@@ -1,6 +1,42 @@
 version: '2.1'
 
 services:
+  nginx_load_balancer:
+    image: nginx
+    container_name: my_nginx_load_balancer
+    ports:
+      - "8083:80"
+    volumes:
+      - ./nginx_load_balancer.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - nginx1
+      - nginx2
+    restart: always
+
+  nginx1:
+    image: nginx
+    container_name: my_nginx1
+    ports:
+      - "8082:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+      - app2
+    restart: always
+
+  nginx2:
+    image: nginx
+    container_name: my_nginx2
+    ports:
+      - "8081:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+      - app2
+    restart: always
+
   app:
     container_name: my_project_app
     build: ./
@@ -16,6 +52,22 @@ services:
     restart: always
     env_file:
       - .env
+
+  app2:
+    container_name: my_project_app_2
+    build: ./
+    command: bash -c 'while !</dev/tcp/pgpool/5432; do sleep 1; done; uvicorn main:app --host 0.0.0.0'
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - pgpool
+      - pgpool-1
+    restart: always
+    env_file:
+      - .env
+
   pg-0:
     image: docker.io/bitnami/postgresql-repmgr:14
     ports:
@@ -34,6 +86,7 @@ services:
       - REPMGR_NODE_NETWORK_NAME=pg-0
       - REPMGR_USERNAME=${REPMGR_USERNAME}
       - REPMGR_PASSWORD=${REPMGR_PASSWORD}
+
   pg-1:
     image: docker.io/bitnami/postgresql-repmgr:14
     ports:
@@ -52,6 +105,7 @@ services:
       - REPMGR_NODE_NETWORK_NAME=pg-1
       - REPMGR_USERNAME=${REPMGR_USERNAME}
       - REPMGR_PASSWORD=${REPMGR_PASSWORD}
+
   pgpool:
     image: docker.io/bitnami/pgpool:4
     ports:
@@ -73,6 +127,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
   pgpool-1:
     image: docker.io/bitnami/pgpool:4
     ports:
@@ -94,6 +149,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
 volumes:
   #postgres_data:
   pg_0_data:
