@@ -69,7 +69,7 @@ def main():
                           put_time,
                           delete_time,
                           total_time])
-            time.sleep(0.5)
+            #time.sleep(0.5)
         print("=========================================")
         #time.sleep(1)  # Пауза между запросами
     print(times)
