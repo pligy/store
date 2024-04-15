@@ -8,7 +8,9 @@
 ![4](https://github.com/pligy/store/assets/62108982/6bcecbfd-4cc6-4465-a0ee-c903f2a015c5)
 
 Нагрузочное тестирование:
+
 10/1 3/1 18/1 10/10 (пользователей/одновременно отправляют запросы)
+
 nginx load balancer + 2 nginx + 2 be + 2 pgpool + 2 pg
 
 ![image](https://github.com/pligy/store/assets/62108982/66dfe88c-115d-40ae-8604-9b0d4442a801)
