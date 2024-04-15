@@ -30,3 +30,14 @@ nginx load balancer + 2 nginx + 2 be + 2 pgpool + 2 pg
 ![image](https://github.com/pligy/store/assets/62108982/4101bb9e-6abb-4b1e-8a4e-d733c28fb830)
 ![image](https://github.com/pligy/store/assets/62108982/3b4fbb5c-589e-4240-adcc-2a20825ee679)
 ![image](https://github.com/pligy/store/assets/62108982/bb0439c8-d09e-4222-a13e-31d61f0b7836)
+
+
+nginx load balancer + 2 nginx + 2 be + 2 pgpool + 2 pg + 2 redis
+
+![image](https://github.com/pligy/store/assets/62108982/3bef66e7-5faa-4ae5-b8bd-a53a429f3ffe)
+![image](https://github.com/pligy/store/assets/62108982/2cdc036b-8778-44e5-9515-11b3362c2d66)
+![image](https://github.com/pligy/store/assets/62108982/16cab931-35b1-4827-ad3e-41a6df048ffd)
+
+
+
+
