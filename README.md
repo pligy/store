@@ -1,8 +1,14 @@
-Запуск: docker-compose up --build -d
+Проект представляет из себя backend для интернет-магазина
+
+
+Запуск: 
+
+```docker-compose up --build -d```
 
 Архитектура проекта:
 
-![image](https://github.com/pligy/store/assets/62108982/44640496-a4a5-4275-a9ae-3250a57eaa79)
+![image](https://github.com/user-attachments/assets/8bdafb82-8517-4155-9af9-4519900ae654)
+
 
 
 1 пользователь
@@ -13,7 +19,7 @@
 
 Нагрузочное тестирование:
 
-10/1 3/1 18/1 10/10 (пользователей/одновременно отправляют запросы)
+10/1 3/1 18/1 10/10 (users/ramp up)
 
 nginx load balancer + 2 nginx + 2 be + 2 pgpool + 2 pg
 
